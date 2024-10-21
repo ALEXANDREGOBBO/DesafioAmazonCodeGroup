@@ -1,5 +1,5 @@
 Desafio Técnico - Automação de Testes da Página Inicial da Amazon Descrição do Projeto Este repositório contém a automação de testes para garantir a qualidade da página inicial da Amazon Brasil, focando nas seguintes funcionalidades:
-** Obtive uma certa incompatibilidade no meu ambiente com versões mais novas do cypress por conta de uma possível atualização por tanto utilizado uma versão anterior porém no dia a dia utilizo versões mais atualizada **
+
 Sugestões de Pesquisa (Autocomplete) Menu de Navegação Responsivo Desempenho de Carregamento A automação foi implementada utilizando Cypress com suporte para Cucumber e o padrão de design Page Objects, garantindo uma estrutura modular, reutilizável e de fácil manutenção para os testes.
 Estrutura do Projeto O projeto está estruturado em três partes principais:
 Features: Arquivos .feature que descrevem os cenários de teste em linguagem Gherkin, permitindo uma abordagem BDD (Behavior Driven Development).
