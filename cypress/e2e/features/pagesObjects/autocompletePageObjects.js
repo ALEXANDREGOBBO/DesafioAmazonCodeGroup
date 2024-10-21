@@ -3,10 +3,30 @@ class desafioAmazonQA {
     visit() {
       cy.visit("https://www.amazon.com.br/");
     }
+
+    verificaTitulo(){
+      cy.title().should("include", "Amazon");
+    }
+
   
     // Elementos
     getAutocomplete() {
-      return cy.get('#twotabsearchtextbox');
+      return cy.get('#twotabsearchtextbox').click();
+    }
+
+    getAutocompleteResponse(){
+      cy.intercept({
+        method: 'GET',
+        url: "https://completion.amazon.com.br/api/2017/suggestions*"
+      }).as('getAutocomplete');
+      
+    }
+
+    validaRetorno(){
+      return cy.wait('@getAutocomplete').then((interception) => {
+        // Verifica se o status da resposta é 200 (sucesso)
+        expect(interception.response.statusCode).to.eq(200);
+      });
     }
   
     getContainerSugestoes() {
@@ -19,8 +39,13 @@ class desafioAmazonQA {
   
     // Métodos
     pesquisar(term) {
-      this.getAutocomplete().click().type(term);
+      this.getAutocomplete().type(term);
+      this.getAutocomplete().should('have.value', term); // Verificando o valor do campo
     }
+
+ //   verificarValorCampo(valorEsperado) {
+      
+   // }
   
     limparPesquisa() {
       this.getAutocomplete().clear();
